@@ -20,16 +20,24 @@ fn main() {
         Some(file) => file,
         None => "",
     };
-    let mut contents = String::new();
+
     if filename != "" {
-        contents = fs::read_to_string(filename).unwrap();
+        let contents = match fs::read_to_string(filename) {
+            Ok(result) => result,
+            Err(e) => {
+                eprintln!("File not found, error: {:?}", e);
+                std::process::exit(1);
+            }
+        };
+        send_msg(contents);
+    } else {
+        println!("Need file name, found: {}", filename);
     }
-    send_msg(contents);
 }
 
 fn send_msg(contents: String) {
     let ctx = zmq::Context::new();
     let socket = ctx.socket(zmq::REQ).unwrap();
     socket.connect("tcp://127.0.0.1:9090").unwrap();
-    socket.send(contents.as_bytes(), 0).unwrap();
+    socket.send(&contents, 0).unwrap();
 }

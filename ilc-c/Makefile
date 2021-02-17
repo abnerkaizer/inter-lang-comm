@@ -1,8 +1,9 @@
 CC = gcc
 TARGET = ilc
+FLAGS = -Wall
 LIBS = -lzmq -lczmq
 OPT = -O2 -flto
 all:
-	$(CC) $(OPT) ilc.c $(LIBS) -o $(TARGET)
+	$(CC) $(FLAGS) $(OPT) ilc.c $(LIBS) -o $(TARGET)
 clean:
 	rm ilc
