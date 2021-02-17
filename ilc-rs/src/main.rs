@@ -31,7 +31,7 @@ fn main() {
         };
         send_msg(contents);
     } else {
-        println!("Need file name, found: {}", filename);
+        println!("Need file name.");
     }
 }
 
