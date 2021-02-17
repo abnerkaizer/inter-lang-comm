@@ -6,6 +6,9 @@ int main(int argc, char const *argv[])
 
 	char *string = zstr_recv(rep);
 	FILE *fp =  fopen(argv[1], "w");
+	//Saida para o console.
+	puts(string);
+	//Saida pra o arquivo texto.
 	fputs(string,fp);
 
 	fclose(fp);
