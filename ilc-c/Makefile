@@ -1,5 +1,5 @@
 CC = gcc
-TARGET = ilc
+TARGET = ilc-bin
 FLAGS = -Wall
 LIBS = -lzmq -lczmq
 OPT = -O2 -flto
